@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入axios工具 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
+    <!--推荐使用本地引入 -->
+    <script src="./js/axios.min.js"></script>
+    <!--1、引入vue.js -->
+    <script src="js/vue.js"></script>
+    <style>
+        .box {
+           /**
+           边框：1像素 实线 红色
+            */
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<!--2、创建视图 -->
+<div id="app">
+    <button @click="getData">点击获取数据</button>
+
+    <div v-for="item in list" class="box">
+        <div>
+            ID: {{ item.id }}
+        </div>
+        <div>
+            标题：{{ item.title }}
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+<script>
+    <!--3、创建实例 -->
+    new Vue({
+        //元素挂载
+        el: "#app",
+        //数据
+        data() {
+            return {
+                //声明变量
+                list: [
+                    {
+                        "id": 1,
+                        "title": "时令水果",
+                        "picture": "https://m11.360buyimg.com/babel/jfs/t1/190322/6/35965/98997/64c3163fF6030855f/e8eac6813565c538.gif",
+                        "status": null
+                    },
+                ]
+            }
+        },
+        //方法
+        methods: {
+            getData() {
+                // 向给定ID的用户发起请求
+                axios.get('http://127.0.0.1:8000/test/')
+                    .then((response) => {
+                        // 处理成功情况
+                        //赋值操作
+                        // this.list.push(response.data)
+                        this.list = response.data
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        // 处理错误情况
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // 总是会执行
+                    });
+            }
+        }
+
+    })
+
+
+</script>

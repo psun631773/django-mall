@@ -1,0 +1,28 @@
+<!--表示界面使用的编码为utf-8格式 -->
+<meta charset="UTF-8">
+<script>
+    //定义json对象
+    var json = {
+        name:"张三",
+        age:30
+    }
+    //.city赋值
+    json.city="湖北"
+    //[]
+    json['aaa']="test"
+    //在控制天输出数据
+    console.log(json)
+    console.log("--------------------")
+    //删除
+    delete json.aaa
+    console.log(json)
+    console.log("--------------------")
+
+    //编辑
+    json.city="四川"
+    console.log(json)
+    console.log("--------------------")
+
+    //值的获取
+    console.log(json.city)
+</script>
